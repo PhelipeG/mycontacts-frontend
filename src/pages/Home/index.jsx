@@ -25,6 +25,7 @@ export default function HomePage() {
   useEffect(() => {
     async function loadContacts() {
       try {
+
         setIsLoading(true)
 
         const contactsList = await ContactsService.listContacts(orderBy)
