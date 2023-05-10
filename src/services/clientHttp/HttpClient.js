@@ -1,5 +1,5 @@
 import delay from "../../utils/delay";
-
+import APIError from "../../errors/APIError";
 class HttpClient {
   constructor(baseURL) {
     this.baseURL = baseURL;
@@ -20,7 +20,8 @@ class HttpClient {
     if (response.ok) {
       return body;
     }
-    throw new Error(body?.error || `${response.status} - ${response.statusText}`);
+    //mandando erro personalizado de API
+    throw new APIError(response, body);
   }
 }
 
