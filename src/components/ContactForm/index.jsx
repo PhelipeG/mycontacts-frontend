@@ -1,36 +1,46 @@
-import PropTypes from 'prop-types';
+import PropTypes, { func } from "prop-types";
 
-import { useState } from 'react';
-import useErrors from '../../hooks/useErrors';
+import { useState, useEffect } from "react";
+import useErrors from "../../hooks/useErrors";
 
-import isEmailValid from '../../utils/isEmailValid';
-import formatPhone from '../../utils/formatPhone';
+import isEmailValid from "../../utils/isEmailValid";
+import formatPhone from "../../utils/formatPhone";
 
-import FormGroup from '../FormGroup';
-import Button from '../button';
-import Input from '../input';
-import Select from '../select';
-import { Form, ButtonContainer } from './styles';
+import FormGroup from "../FormGroup";
+import Button from "../button";
+import Input from "../input";
+import Select from "../select";
+import { Form, ButtonContainer } from "./styles";
+
+import CategoryService from "../../services/CategoryService";
 
 export default function ContactForm({ buttonLabel }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [category, setCategory] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [categories, setCategories] = useState([]);
 
-  const {
-    setError, removeError, getErrorMessageByFieldName, errors,
-  } = useErrors();
+  const { setError, removeError, getErrorMessageByFieldName, errors } =
+    useErrors();
 
-  const isFormValid = (name && errors.length === 0);
+  const isFormValid = name && errors.length === 0;
+
+  useEffect(() => {
+    async function loadCategories() {
+      const categoriesList = await CategoryService.listCategories();
+      setCategories(categoriesList);
+    }
+    loadCategories();
+  }, []);
 
   function handleChangeName(event) {
     setName(event.target.value);
 
     if (!event.target.value) {
-      setError({ field: 'name', message: 'Nome e obrigatorio' });
+      setError({ field: "name", message: "Nome e obrigatorio" });
     } else {
-      removeError('name');
+      removeError("name");
     }
   }
 
@@ -38,9 +48,9 @@ export default function ContactForm({ buttonLabel }) {
     setEmail(event.target.value);
 
     if (event.target.value && !isEmailValid(event.target.value)) {
-      setError({ field: 'email', message: 'Email Invalido' });
+      setError({ field: "email", message: "Email Invalido" });
     } else {
-      removeError('email');
+      removeError("email");
     }
   }
   function handlePhoneChange(event) {
@@ -49,18 +59,18 @@ export default function ContactForm({ buttonLabel }) {
 
   return (
     <Form noValidate>
-      <FormGroup error={getErrorMessageByFieldName('name')}>
+      <FormGroup error={getErrorMessageByFieldName("name")}>
         <Input
-          error={getErrorMessageByFieldName('name')}
+          error={getErrorMessageByFieldName("name")}
           placeholder="Nome *"
           value={name}
           onChange={handleChangeName}
         />
       </FormGroup>
-      <FormGroup error={getErrorMessageByFieldName('email')}>
+      <FormGroup error={getErrorMessageByFieldName("email")}>
         <Input
           type="email"
-          error={getErrorMessageByFieldName('email')}
+          error={getErrorMessageByFieldName("email")}
           placeholder="Email"
           value={email}
           onChange={handleChangeEmail}
@@ -76,14 +86,21 @@ export default function ContactForm({ buttonLabel }) {
       </FormGroup>
       <FormGroup>
         <Select
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          value={categoryId}
+          onChange={(event) => setCategoryId(event.target.value)}
         >
-          <option value="1">Celular</option>
+          <option value="">Sem Categoria</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
         </Select>
       </FormGroup>
       <ButtonContainer>
-        <Button type="submit" disabled={!isFormValid}>{buttonLabel}</Button>
+        <Button type="submit" disabled={!isFormValid}>
+          {buttonLabel}
+        </Button>
       </ButtonContainer>
     </Form>
   );
