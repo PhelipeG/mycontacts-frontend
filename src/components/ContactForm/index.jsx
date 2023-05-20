@@ -1,4 +1,4 @@
-import PropTypes, { func } from "prop-types";
+import PropTypes from "prop-types";
 
 import { useState, useEffect } from "react";
 import useErrors from "../../hooks/useErrors";
@@ -14,7 +14,7 @@ import { Form, ButtonContainer } from "./styles";
 
 import CategoryService from "../../services/CategoryService";
 
-export default function ContactForm({ buttonLabel }) {
+export default function ContactForm({ buttonLabel, onSubmit }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -62,9 +62,17 @@ export default function ContactForm({ buttonLabel }) {
   function handlePhoneChange(event) {
     setPhone(formatPhone(event.target.value));
   }
-
+  function handleSubmit(event) {
+    event.preventDefault();
+    onSubmit({
+      name,
+      email,
+      phone,
+      categoryId,
+    });
+  }
   return (
-    <Form noValidate>
+    <Form onSubmit={handleSubmit} noValidate>
       <FormGroup error={getErrorMessageByFieldName("name")}>
         <Input
           error={getErrorMessageByFieldName("name")}
@@ -114,4 +122,5 @@ export default function ContactForm({ buttonLabel }) {
 }
 ContactForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
