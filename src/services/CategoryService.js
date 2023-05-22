@@ -1,15 +1,13 @@
-import HttpClient from "./clientHttp/HttpClient"
+import HttpClient from './clientHttp/HttpClient';
 
-class CategoryService{
-
-  constructor(){
-    this.HttpClient = new HttpClient('http://localhost:5000')
+class CategoryService {
+  constructor() {
+    this.HttpClient = new HttpClient('http://localhost:5000');
   }
 
-  async listCategories(){
-    return this.HttpClient.get('/categories')
+  async listCategories() {
+    return this.HttpClient.get('/categories');
   }
-
 }
 
-export default new CategoryService()
+export default new CategoryService();
