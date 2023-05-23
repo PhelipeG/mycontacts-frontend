@@ -1,10 +1,10 @@
-import ContactForm from "../../components/ContactForm";
-import PageHeader from "../../components/PageHeader";
-import ContactsService from "../../services/ContactsService";
+import ContactForm from '../../components/ContactForm';
+import PageHeader from '../../components/PageHeader';
+import ContactsService from '../../services/ContactsService';
 
 export default function NewContactPage() {
   async function handleSubmit(formData) {
-    try{
+    try {
       const contact = {
         name: formData.name,
         email: formData.email,
@@ -12,10 +12,9 @@ export default function NewContactPage() {
         category_id: formData.categoryId,
       };
       const response = await ContactsService.createContact(contact);
-    }catch{
-      alert('Ocorreu erro ao cadastrar contato')
+    } catch {
+      alert('Ocorreu erro ao cadastrar contato');
     }
-
   }
 
   return (
