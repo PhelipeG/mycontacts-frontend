@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-top: 40px;
@@ -65,8 +65,7 @@ export const ListContainer = styled.div`
         color: ${({ theme }) => theme.colors.primary.main};
       }
       img {
-        transform: ${({ orderBy }) =>
-          orderBy === "asc" ? "rotate(180deg)" : "rotate(0deg)"};
+        transform: ${({ orderBy }) => (orderBy === 'asc' ? 'rotate(180deg)' : 'rotate(0deg)')};
         transition: transform 0.2s ease-in;
       }
     }
@@ -158,7 +157,7 @@ export const SearchNotFoundContainer = styled.div`
   align-items: flex-startß;
 
   span{
-    color: ${({theme}) => theme.colors.gray[200]};
+    color: ${({ theme }) => theme.colors.gray[200]};
     margin-left: 20px;
     word-break: break-word;
   }

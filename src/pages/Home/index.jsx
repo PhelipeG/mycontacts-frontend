@@ -26,7 +26,7 @@ import Modal from '../../components/Modal';
 import Loader from '../../components/Loader';
 import ContactsService from '../../services/ContactsService';
 
-import Button from '../../components/button';
+import Button from '../../components/Button';
 
 export default function HomePage() {
   const [contacts, setContacts] = useState([]);
