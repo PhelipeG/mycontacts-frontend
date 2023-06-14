@@ -5,7 +5,7 @@ class ContactsService {
     this.HttpClient = new HttpClient('http://localhost:5000');
   }
 
-  async listContacts(orderBy = 'asc') {
+  listContacts(orderBy = 'asc') {
     return this.HttpClient.get(`/contacts?orderBy=${orderBy}`, {
       headers: {
         Authorization: 'Meu Token',
@@ -13,7 +13,11 @@ class ContactsService {
     });
   }
 
-  async createContact(contact) {
+  getcontactById(id) {
+    return this.HttpClient.get(`/contacts/${id}`);
+  }
+
+  createContact(contact) {
     return this.HttpClient.post('/contacts', { body: contact });
   }
 }
