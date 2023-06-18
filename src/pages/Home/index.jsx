@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/jsx-no-useless-fragment */
 import { Link } from 'react-router-dom';
 import {
@@ -52,7 +53,6 @@ export default function HomePage() {
       setContacts(contactsList);
     } catch (err) {
       setHasError(true);
-      console.error(err);
     } finally {
       setIsLoading(false);
     }
@@ -76,6 +76,16 @@ export default function HomePage() {
   return (
     <Container>
       <Loader isloading={isloading} />
+      <Modal
+        danger
+        title="Tem Certerza ?"
+        confirmLabel="Deletar"
+        cancelLabel="Cancelar"
+        onCancel={() => alert('Cancelar')}
+        onConfirm={() => alert('Confirmado')}
+      >
+
+      </Modal>
 
       {contacts.length > 0 && (
         <InputSearchContainer>
