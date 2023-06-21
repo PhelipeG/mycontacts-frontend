@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import { Container, Overlay, Footer } from './styles';
 // eslint-disable-next-line import/no-unresolved
 import Button from '../Button';
+import ReactPortal from '../ReactPortal';
 
 export default function Modal({
   cancelLabel,
@@ -13,26 +13,38 @@ export default function Modal({
   onCancel,
   onConfirm,
   visible,
+  isLoading,
 }) {
   if (!visible) {
     return null;
   }
-  return ReactDOM.createPortal(
-    <Overlay>
-      <Container danger={danger}>
-        <h1>{title}</h1>
-        <div className="modal-body">{children}</div>
-        <Footer>
-          <button type="button" className="cancel-button" onClick={onCancel}>
-            {cancelLabel}
-          </button>
-          <Button type="button" danger={danger} onClick={onConfirm}>
-            {confirmLabel}
-          </Button>
-        </Footer>
-      </Container>
-    </Overlay>,
-    document.getElementById('modal-root'),
+  return (
+    <ReactPortal containerId="modal-root">
+      <Overlay>
+        <Container danger={danger}>
+          <h1>{title}</h1>
+          <div className="modal-body">{children}</div>
+          <Footer>
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={onCancel}
+              disabled={isLoading}
+            >
+              {cancelLabel}
+            </button>
+            <Button
+              type="button"
+              danger={danger}
+              onClick={onConfirm}
+              isLoading={isLoading}
+            >
+              {confirmLabel}
+            </Button>
+          </Footer>
+        </Container>
+      </Overlay>
+    </ReactPortal>
   );
 }
 Modal.propTypes = {
@@ -44,9 +56,11 @@ Modal.propTypes = {
   confirmLabel: PropTypes.string,
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
 };
 Modal.defaultProps = {
   danger: false,
   cancelLabel: 'Cancelar',
   confirmLabel: 'Confirmar',
+  isLoading: false,
 };

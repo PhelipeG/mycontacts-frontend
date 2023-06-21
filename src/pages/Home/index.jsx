@@ -26,7 +26,7 @@ import magnifier from '../../assets/images/magnifier-question.svg';
 import Modal from '../../components/Modal';
 import Loader from '../../components/Loader';
 import ContactsService from '../../services/ContactsService';
-
+import toast from '../../utils/toast';
 import Button from '../../components/Button';
 
 export default function HomePage() {
@@ -37,6 +37,7 @@ export default function HomePage() {
   const [hasError, setHasError] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [contactBeingDeleted, setContactBeingDeleted] = useState(null);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 
   // lista de contatos filtrados
   const filteredContacts = useMemo(
@@ -80,9 +81,30 @@ export default function HomePage() {
   }
   function handleCloseDeleteContactModal() {
     setIsDeleteModal(false);
+    setContactBeingDeleted(null);
   }
-  function handleConfirmDeleteContact() {
+  async function handleConfirmDeleteContact() {
+    try {
+      setIsLoadingDelete(true);
+      await ContactsService.deleteContact(contactBeingDeleted.id);
+      setContacts((prevState) => prevState.filter(
+        (contact) => contact.id === contactBeingDeleted.id,
+      ));
 
+      handleCloseDeleteContactModal();
+
+      toast({
+        type: 'success',
+        text: 'Contato Deletado',
+      });
+    } catch {
+      toast({
+        type: 'danger',
+        text: 'Ocorreu erro ao deletar contato',
+      });
+    } finally {
+      setIsLoadingDelete(false);
+    }
   }
   return (
     <Container>
@@ -90,6 +112,7 @@ export default function HomePage() {
 
       <Modal
         danger
+        isLoading={isLoadingDelete}
         title={`Tem certeza que deseja remover o contato "${contactBeingDeleted?.name}" ? `}
         confirmLabel="Deletar"
         cancelLabel="Cancelar"
@@ -97,7 +120,7 @@ export default function HomePage() {
         onConfirm={handleConfirmDeleteContact}
         visible={isDeleteModal}
       >
-        <p>Esta acao nao podera ser desfeita</p>
+        <p>Esta acao nao podera ser desfeita !</p>
       </Modal>
 
       {contacts.length > 0 && (
