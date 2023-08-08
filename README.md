@@ -1,98 +1,82 @@
-<div align="center" id="top">
-  <img src="./.github/app.gif" alt="Mycontacts Front" />
-
-  &#xa0;
-
-  <!-- <a href="https://mycontactsfront.netlify.app">Demo</a> -->
-</div>
-
-<h1 align="center">Mycontacts Front</h1>
-
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/mycontacts-front?color=56BEB8">
+  <img src="./src/assets/images/logo.svg" />
+<p>
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/mycontacts-front?color=56BEB8">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{YOUR_GITHUB_USERNAME}}/mycontacts-front?color=56BEB8">
-
-  <img alt="License" src="https://img.shields.io/github/license/{{YOUR_GITHUB_USERNAME}}/mycontacts-front?color=56BEB8">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/mycontacts-front?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/mycontacts-front?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{YOUR_GITHUB_USERNAME}}/mycontacts-front?color=56BEB8" /> -->
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-red">
 </p>
 
-<!-- Status -->
 
-<!-- <h4 align="center">
-	🚧  Mycontacts Front 🚀 Under construction...  🚧
-</h4>
-//plugin eslint-react-hooks
-<hr> -->
 
-<p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0;
-  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
-  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+## :computer: Sobre o projeto
+:phone: O MyContacts te ajuda a gerenciar seus principais contatos incluind categrias, registre seus contatos de forma simples e visualize-os quando e onde quiser.
+
+<img src="" alt="presentation image">
+
+> Página principal
+
+## :art: Layout
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+    <img src="" alt="Login page" width="500px">
+    <img src="" alt="Register page" width="500px"/>
+
 </p>
 
-<br>
+## :hammer_and_wrench: Tecnologias
 
-## :dart: About ##
+As seguintes ferramentas foram usadas na construção do projeto:
 
-Describe your project
+- [React ](https://pt-br.reactjs.org/)
+- [React-Router-Dom v6](https://reactrouter.com/docs/en/v6)
+- [Styled-components](https://styled-components.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Npm](https://www.npmjs.com/)
+- [EsLint](https://eslint.org/)
 
-## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+### Ajustes e melhorias
 
-## :rocket: Technologies ##
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-The following tools were used in this project:
+- [x] Criar Página de visualização do contatos
+- [x] Criar página para registro de contatos
+- [x] Criar página para atualização de contatos
+- [x] Criar modal de exclusão de contato
+- [x] Conectar Front-end com Backend
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+## :rocket: Como executar o projeto
 
-## :white_check_mark: Requirements ##
+Este projeto consome uma API exclusiva para ele, portanto sugiro que dê uma olhada no repositório [my-contacts-backend]() para aprender a configurar o Backend do projeto
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
-## :checkered_flag: Starting ##
+## Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/). Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+### :coffee: Rodando a aplicação
 
 ```bash
-# Clone this project
-$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/mycontacts-front
+# Clone este repositório
+$ git clone 
 
-# Access
-$ cd mycontacts-front
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd my-contacts-frontend
 
-# Install dependencies
+# Instale as dependências
+$ npm install
+      ou
 $ yarn
 
-# Run the project
-$ yarn start
+# Execute a aplicação em modo de desenvolvimento
+$ npm run start
+      ou
+$ yarn dev
 
-# The server will initialize in the <http://127.0.0.1:5173/>
+# A aplicação será aberta na porta:5173 - acesse http://localhost:5173/
 ```
 
-## :memo: License ##
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+## :pencil: Licença
 
-
-Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
-
-&#xa0;
-
-<a href="#top">Back to top</a>
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.

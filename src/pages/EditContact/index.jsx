@@ -28,7 +28,7 @@ export default function EditContactPage() {
         }
       } catch {
         if (isMounted.current) {
-          history.pushState('/');
+          history.push('/');
           toast({
             type: 'danger',
             text: 'Contact not found',
@@ -39,17 +39,13 @@ export default function EditContactPage() {
     loadContact();
   }, [id, history, isMounted]);
 
-  async function handleSubmit(formData) {
+  async function handleSubmit(contact) {
     try {
-      const contact = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        category_id: formData.categoryId,
-      };
+      const contactData = await ContactsService.updateContact(id, contact);
 
       await ContactsService.updateContact(id, contact);
-      setContactName(formData.name);
+      setContactName(contactData.name);
+      history.push('/');
       toast({
         type: 'success',
         text: 'Contato atualizado com sucesso !',
