@@ -1,62 +1,13 @@
-import { useHistory, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
 import ContactForm from '../../components/ContactForm';
 import PageHeader from '../../components/PageHeader';
-import ContactsService from '../../services/ContactsService';
 import Loader from '../../components/Loader';
-import toast from '../../utils/toast';
-import useIsMounted from '../../hooks/useIsMounted';
+import useEdit from './useEdit';
 
 export default function EditContactPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [contactName, setContactName] = useState('');
-  const contactFormRef = useRef(null);
+  const {
+    isLoading, contactName, contactFormRef, handleSubmit,
+  } = useEdit();
 
-  const { id } = useParams();
-  const history = useHistory();
-  const isMounted = useIsMounted();
-
-  useEffect(() => {
-    async function loadContact() {
-      try {
-        const contact = await ContactsService.getcontactById(id);
-
-        if (isMounted.current) {
-          contactFormRef.current.setFieldsValues(contact);
-          setIsLoading(false);
-          setContactName(contact.name);
-        }
-      } catch {
-        if (isMounted.current) {
-          history.push('/');
-          toast({
-            type: 'danger',
-            text: 'Contact not found',
-          });
-        }
-      }
-    }
-    loadContact();
-  }, [id, history, isMounted]);
-
-  async function handleSubmit(contact) {
-    try {
-      const contactData = await ContactsService.updateContact(id, contact);
-
-      await ContactsService.updateContact(id, contact);
-      setContactName(contactData.name);
-      history.push('/');
-      toast({
-        type: 'success',
-        text: 'Contato atualizado com sucesso !',
-      });
-    } catch {
-      toast({
-        type: 'danger',
-        text: 'Ocorreu um erro ao editar o contato !',
-      });
-    }
-  }
   return (
     <>
       <Loader isLoading={isLoading} />
