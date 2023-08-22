@@ -3,6 +3,7 @@ import { Container, Overlay, Footer } from './styles';
 // eslint-disable-next-line import/no-unresolved
 import Button from '../Button';
 import ReactPortal from '../ReactPortal';
+import useAnimatedUnMount from '../../hooks/useAnimatedUnMount';
 
 export default function Modal({
   cancelLabel,
@@ -15,13 +16,15 @@ export default function Modal({
   visible,
   isLoading,
 }) {
-  if (!visible) {
+  const { shouldRender, animatedElementRef } = useAnimatedUnMount(visible);
+
+  if (!shouldRender) {
     return null;
   }
   return (
     <ReactPortal containerId="modal-root">
-      <Overlay>
-        <Container danger={danger}>
+      <Overlay isLeaving={!visible} ref={animatedElementRef}>
+        <Container danger={danger} isLeaving={!visible}>
           <h1>{title}</h1>
           <div className="modal-body">{children}</div>
           <Footer>
