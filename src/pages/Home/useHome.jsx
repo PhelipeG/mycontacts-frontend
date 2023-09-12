@@ -1,5 +1,6 @@
+/* eslint-disable max-len */
 import {
-  useCallback, useEffect, useMemo, useState,
+  useCallback, useEffect, useState, useTransition,
 } from 'react';
 import ContactsService from '../../services/ContactsService';
 import toast from '../../utils/toast';
@@ -13,13 +14,15 @@ export default function useHome() {
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [contactBeingDeleted, setContactBeingDeleted] = useState(null);
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  const [filteredContacts, setFilteredContacts] = useState([]);
+  const [isPending, startTransition] = useTransition();
 
   // lista de contatos filtrados
-  const filteredContacts = useMemo(
-    // eslint-disable-next-line max-len
-    () => contacts.filter((contact) => contact.name.toLowerCase().includes(searchTerm.toLowerCase())),
-    [contacts, searchTerm],
-  );
+  // const filteredContacts = useMemo(
+  //   // eslint-disable-next-line max-len
+  //   () => contacts.filter((contact) => contact.name.toLowerCase().includes(searchTerm.toLowerCase())),
+  //   [contacts, searchTerm],
+  // );
 
   const loadContacts = useCallback(async () => {
     try {
@@ -29,6 +32,7 @@ export default function useHome() {
 
       setHasError(false);
       setContacts(contactsList);
+      setFilteredContacts(contactsList);
     } catch (err) {
       setHasError(true);
       setContacts([]);// resetando quando der erro
@@ -41,20 +45,25 @@ export default function useHome() {
     loadContacts();
   }, [loadContacts]);
 
-  function handleToggleOrderBy() {
+  const handleToggleOrderBy = useCallback(() => {
     setOrderBy((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
-  }
+  }, []);
 
   function handleChangeSearchTerm(event) {
+    const { value } = event.target;
     setSearchTerm(event.target.value);
+
+    startTransition(() => {
+      setFilteredContacts(contacts.filter((contact) => contact.name.toLowerCase().includes(value.toLowerCase())));
+    });
   }
   function handleTryAgain() {
     loadContacts();
   }
-  function handleDeleteContactModal(contact) {
+  const handleDeleteContactModal = useCallback((contact) => {
     setContactBeingDeleted(contact);
     setIsDeleteModal(true);
-  }
+  }, []);
   function handleCloseDeleteContactModal() {
     setIsDeleteModal(false);
     setContactBeingDeleted(null);
@@ -83,6 +92,7 @@ export default function useHome() {
     }
   }
   return {
+    isPending,
     contacts,
     orderBy,
     isloading,

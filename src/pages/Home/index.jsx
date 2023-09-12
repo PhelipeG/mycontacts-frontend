@@ -32,6 +32,7 @@ export default function HomePage() {
     handleCloseDeleteContactModal,
     handleConfirmDeleteContact,
     isDeleteModalVisible,
+    isPending,
   } = useHome();
 
   const hasContacts = contacts.length > 0;
@@ -77,6 +78,7 @@ export default function HomePage() {
 
       {hasContacts && (
         <>
+          { isPending && <Loader />}
           <ContactList
             filteredContacts={filteredContacts}
             orderBy={orderBy}
