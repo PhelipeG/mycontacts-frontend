@@ -1,82 +1,128 @@
+<h1 align="center">
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/DWLsHRv/logo.png" alt="logo" border="0"></a>
+</h1>
+
 <p align="center">
-  <img src="./src/assets/images/logo.svg" />
-<p>
-
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-red">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-licença">Licença</a>
 </p>
 
-
-
-## :computer: Sobre o projeto
-:phone: O MyContacts te ajuda a gerenciar seus principais contatos incluind categrias, registre seus contatos de forma simples e visualize-os quando e onde quiser.
-
-<img src="" alt="presentation image">
-
-> Página principal
-
-## :art: Layout
-<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-    <img src="" alt="Login page" width="500px">
-    <img src="" alt="Register page" width="500px"/>
-
+<p align="center">
+  <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E6&labelColor=121214" alt="License">
 </p>
 
-## :hammer_and_wrench: Tecnologias
+<br>
 
-As seguintes ferramentas foram usadas na construção do projeto:
+<p align="center">
+  <a href="https://ibb.co/3Wq4x0h"><img src="https://i.ibb.co/ctHkWNT/Home.png" alt="Home" border="0"></a>
+</p>
 
-- [React ](https://pt-br.reactjs.org/)
-- [React-Router-Dom v6](https://reactrouter.com/docs/en/v6)
-- [Styled-components](https://styled-components.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Axios](https://axios-http.com/docs/intro)
-- [Npm](https://www.npmjs.com/)
-- [EsLint](https://eslint.org/)
+## 🚀 Tecnologias
 
+Tecnologias utilizadas durante o projeto:
 
-### Ajustes e melhorias
+- [ReactJS](https://pt-br.reactjs.org/)
+- [NodeJS](https://nodejs.org/en/)
+- [JavaScript](https://www.javascript.com/)
+- [Express](https://expressjs.com/pt-br/)
+- [Docker](https://www.docker.com/)
+- [Postgres](https://www.postgresql.org/)
+- [Styled Components](https://styled-components.com/)
+- [Eslint](https://eslint.org/)
+- [EditorConfig](https://editorconfig.org/)
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+## ⭐ Funcionalidades implantadas - Front-end
+- React Router Dom - Sistemas de Rotas
+- Componentes Reutilizaveis e Dinâmicos
+- Contatos ordenados de forma crescente e decrescente
+- Tela de Loading / Spinner dinâmico
+- Hook Personalizado
+- CSS-in-JS
+- CRUD
+- Responsividade
 
-- [x] Criar Página de visualização do contatos
-- [x] Criar página para registro de contatos
-- [x] Criar página para atualização de contatos
-- [x] Criar modal de exclusão de contato
-- [x] Conectar Front-end com Backend
+## ⭐ Conceitos implantados - Back-end
+- Responsabilidade Única (Separados por folders controllers, repositories e middlewares)
+- [Conexão com o nosso Container no Docker (folder - database)](https://yarnpkg.com/package/pg)
+- Criação da DATABASE, Tabelas, linhas e utilizando o uuid-ossp para geração do id
+- Sistema de rotas utilizando o Express
+- CRUD
 
-## :rocket: Como executar o projeto
+## 💻 Projeto
 
-Este projeto consome uma API exclusiva para ele, portanto sugiro que dê uma olhada no repositório [my-contacts-backend]() para aprender a configurar o Backend do projeto
+Este projeto está em construção.. 🚧👷‍♂️
 
+Projeto que permite você realizar o registro de um contato, editar, deletar, ordenar de forma crescente e decrescente e pesquisar o seu contato através de seu nome. 😄.
 
-## Pré-requisitos
+## 😎 Iniciando 
 
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/). Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+📖 Para rodar o projeto localmente você precisará seguir algumas instruções.
 
-### :coffee: Rodando a aplicação
+- É necessário que o <a href="https://nodejs.org/en/">NodeJS</a> esteja instalado em sua máquina.
+- É necessário que o <a href="https://www.docker.com/">Docker</a> esteja instalado em sua máquina.
+- É necessário utilizar <a href="https://classic.yarnpkg.com/en/">Yarn</a> ou <a href="https://www.npmjs.com/">Npm</a> para a instalação de pacotes.
 
+### Instalação
 ```bash
-# Clone este repositório
-$ git clone 
+# Clone o repositório
+git clone https://github.com/larissadantier/MyContacts.git
 
-# Acesse a pasta do projeto no seu terminal/cmd
-$ cd my-contacts-frontend
+# Instale todos os pacotes
 
-# Instale as dependências
-$ npm install
-      ou
-$ yarn
+- Npm
+npm install
 
-# Execute a aplicação em modo de desenvolvimento
-$ npm run start
-      ou
-$ yarn dev
+- Yarn
+yarn install
 
-# A aplicação será aberta na porta:5173 - acesse http://localhost:5173/
+# Rodar o Docker - Postgres[https://hub.docker.com/_/postgres]
+
+- Comandos
+Baixando a imagem - postgres: docker pull postgres
+Criando o container: docker run --name pg -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -p 5432:5432 -d postgres (Já inicia automaticamente)
+Caso não tenha iniciado o container, faça o seguinte comando: docker start pg
+Verificar se o container está rodando: docker ps
+
+
 ```
+## 🔖 Layout
 
+Visualize o layout do projeto através do link a seguir:
 
-## :pencil: Licença
+- [Layout Web](https://www.figma.com/file/zhAwjW2RimyjccDgiY6luz/MyContacts) 
 
-Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
+Você precisa ter uma conta no [Figma](http://figma.com/) para acessá-lo 😉.
+
+## Contribuições
+```
+Você quer contribuir para o projeto e não sabe como? 💜
+
+1. Dê Fork no projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Comite as alterações (`git commit -m 'Add some AmazingFeature'`)
+4. Faça o push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+```
+## 📝 Licença
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 👀 Autor
+<br/>
+<p align="center">Desenvolvido por Phelipe G 🚀 </p> 
+<p align="center">Entre em contato! 👏 </p>
+<div align="center">
+<a href="https://www.linkedin.com/in/luis-felipe-silv/" target="_blank">
+    <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>&nbsp;&nbsp;
+
+ <a href="mailto:luisgk53@hotmail.com">
+    <img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" />        
+  </a>&nbsp;&nbsp; 
+</div>
+    
+
